@@ -3,12 +3,14 @@ import { getTopShows, searchShows } from '../api/tvmaze'
 import useFetch from '../hooks/useFetch'
 import ShowCard from '../components/ShowCard'
 import SearchBar from '../components/SearchBar'
+import GenreFilter from '../components/GenreFilter'
 import { Loader, ErrorMessage } from '../components/Status'
 
 function Home() {
-  // keep the search text in the url (?q=...) so refresh and the back button work
+  // keep the search text and genre in the url (?q=...&genre=...) so refresh and back work
   const [searchParams, setSearchParams] = useSearchParams()
   const query = searchParams.get('q') || ''
+  const genre = searchParams.get('genre') || ''
 
   const { data: shows, loading, error } = useFetch(
     () => (query ? searchShows(query) : getTopShows()),
@@ -16,8 +18,20 @@ function Home() {
   )
 
   function handleSearch(text) {
+    // a new search starts with no genre filter
     setSearchParams(text ? { q: text } : {})
   }
+
+  function handleGenre(newGenre) {
+    const params = {}
+    if (query) params.q = query
+    if (newGenre) params.genre = newGenre
+    setSearchParams(params)
+  }
+
+  // all genres that appear in the current results, A to Z
+  const genres = shows ? [...new Set(shows.flatMap((s) => s.genres))].sort() : []
+  const visibleShows = shows ? shows.filter((s) => !genre || s.genres.includes(genre)) : []
 
   return (
     <div>
@@ -30,16 +44,22 @@ function Home() {
       {loading && <Loader />}
       {error && <ErrorMessage message={error} />}
 
-      {!loading && !error && shows.length === 0 && (
-        <p className="status">No shows found for "{query}". Try another name.</p>
-      )}
+      {!loading && !error && (
+        <>
+          <GenreFilter genres={genres} selected={genre} onSelect={handleGenre} />
 
-      {!loading && !error && shows.length > 0 && (
-        <div className="grid">
-          {shows.map((show) => (
-            <ShowCard key={show.id} show={show} />
-          ))}
-        </div>
+          {visibleShows.length === 0 ? (
+            <p className="status">
+              {query ? `No shows found for "${query}". Try another name.` : 'No shows to show.'}
+            </p>
+          ) : (
+            <div className="grid">
+              {visibleShows.map((show) => (
+                <ShowCard key={show.id} show={show} />
+              ))}
+            </div>
+          )}
+        </>
       )}
     </div>
   )
