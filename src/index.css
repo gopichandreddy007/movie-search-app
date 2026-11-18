@@ -397,3 +397,41 @@ h1 {
   font-size: 13px;
   color: var(--muted);
 }
+
+/* ---------- episodes ---------- */
+.episodes {
+  list-style: none;
+  background: var(--surface);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.episodes li {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 11px 16px;
+  border-bottom: 1px solid var(--surface-2);
+  font-size: 14px;
+}
+
+.episodes li:last-child {
+  border-bottom: none;
+}
+
+.ep-number {
+  color: var(--accent);
+  font-weight: 600;
+  width: 32px;
+  flex-shrink: 0;
+}
+
+.ep-name {
+  flex: 1;
+}
+
+.ep-date,
+.ep-rating {
+  color: var(--muted);
+  white-space: nowrap;
+}

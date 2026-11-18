@@ -3,6 +3,7 @@ import { getShowDetails, stripHtml } from '../api/tvmaze'
 import useFetch from '../hooks/useFetch'
 import { Loader, ErrorMessage } from '../components/Status'
 import CastList from '../components/CastList'
+import EpisodeList from '../components/EpisodeList'
 
 function ShowDetails() {
   const { id } = useParams()
@@ -88,6 +89,11 @@ function ShowDetails() {
       <section className="details-section">
         <h2 className="section-title">Cast</h2>
         <CastList cast={show._embedded?.cast} />
+      </section>
+
+      <section className="details-section">
+        <h2 className="section-title">Episodes</h2>
+        <EpisodeList episodes={show._embedded?.episodes} />
       </section>
     </div>
   )
