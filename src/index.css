@@ -198,3 +198,58 @@ h1 {
   color: var(--danger);
   margin-bottom: 5px;
 }
+
+/* ---------- search ---------- */
+.search-bar {
+  position: relative;
+  display: flex;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.search-bar input {
+  flex: 1;
+  min-width: 0;
+  padding: 13px 40px 13px 16px;
+  background: var(--surface);
+  border: 1px solid var(--surface-2);
+  border-radius: var(--radius);
+  color: var(--text);
+  font-size: 16px;
+}
+
+.search-bar input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+/* hide the browser's own clear button, we have ours */
+.search-bar input::-webkit-search-cancel-button {
+  display: none;
+}
+
+.clear-btn {
+  position: absolute;
+  right: 115px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-size: 15px;
+  padding: 5px;
+}
+
+.search-btn {
+  padding: 0 24px;
+  background: var(--accent);
+  color: #111;
+  border: none;
+  border-radius: var(--radius);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.search-btn:hover {
+  background: var(--accent-dark);
+}
