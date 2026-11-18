@@ -10,7 +10,7 @@ import NotFound from './NotFound'
 function ShowDetails() {
   const { id } = useParams()
   const navigate = useNavigate()
-  const { data: show, loading, error } = useFetch(() => getShowDetails(id), [id])
+  const { data: show, loading, error } = useFetch(() => getShowDetails(id), id)
   const { isSaved, toggleShow } = useWatchlist()
 
   if (loading) return <Loader />

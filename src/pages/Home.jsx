@@ -14,7 +14,7 @@ function Home() {
 
   const { data: shows, loading, error } = useFetch(
     () => (query ? searchShows(query) : getTopShows()),
-    [query]
+    query
   )
 
   function handleSearch(text) {

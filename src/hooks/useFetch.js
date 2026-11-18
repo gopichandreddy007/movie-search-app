@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 
 // runs an async function and gives back { data, loading, error }
-// it runs again whenever something in `deps` changes
-function useFetch(fetchFn, deps) {
+// it runs again whenever `key` changes (for example the search text or the show id)
+function useFetch(fetchFn, key) {
   const [data, setData] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
@@ -29,8 +29,9 @@ function useFetch(fetchFn, deps) {
     return () => {
       ignore = true
     }
+    // fetchFn is a new function on every render, so we only re-run when the key changes
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, deps)
+  }, [key])
 
   return { data, loading, error }
 }
