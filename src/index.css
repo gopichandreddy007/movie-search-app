@@ -522,3 +522,77 @@ h1 {
 .not-found p {
   margin-bottom: 15px;
 }
+
+/* ---------- tablet and mobile ---------- */
+@media (max-width: 760px) {
+  .details-top {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .details-poster {
+    max-width: 240px;
+    margin: 0 auto;
+  }
+
+  .details-info h1 {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 500px) {
+  h1 {
+    font-size: 22px;
+  }
+
+  .logo {
+    font-size: 18px;
+  }
+
+  .nav-links a {
+    padding: 6px 10px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .search-btn {
+    padding: 0 16px;
+  }
+
+  .clear-btn {
+    right: 100px;
+  }
+
+  .cast {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+
+  .cast-item img,
+  .cast-placeholder {
+    width: 75px;
+    height: 75px;
+  }
+
+  /* episode date goes under the name on small screens */
+  .episodes li {
+    flex-wrap: wrap;
+    gap: 4px 10px;
+  }
+
+  .ep-name {
+    flex-basis: calc(100% - 45px);
+  }
+
+  .ep-date {
+    margin-left: 42px;
+    font-size: 13px;
+  }
+
+  .ep-rating {
+    font-size: 13px;
+  }
+}
