@@ -475,3 +475,38 @@ h1 {
   justify-content: center;
   font-size: 13px;
 }
+
+/* ---------- watchlist page ---------- */
+.count {
+  background: var(--accent);
+  color: #111;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 1px 7px;
+  border-radius: 10px;
+  margin-left: 6px;
+}
+
+.watch-count {
+  margin: -10px 0 20px;
+}
+
+.watch-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.remove-btn {
+  padding: 7px;
+  border: 1px solid var(--surface-2);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.remove-btn:hover {
+  border-color: var(--danger);
+  color: var(--danger);
+}

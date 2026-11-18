@@ -1,6 +1,9 @@
 import { Link, NavLink } from 'react-router'
+import { useWatchlist } from '../context/WatchlistContext'
 
 function Navbar() {
+  const { watchlist } = useWatchlist()
+
   return (
     <header className="navbar">
       <div className="container nav-inner">
@@ -11,7 +14,10 @@ function Navbar() {
           <NavLink to="/" end>
             Home
           </NavLink>
-          <NavLink to="/watchlist">Watchlist</NavLink>
+          <NavLink to="/watchlist">
+            Watchlist
+            {watchlist.length > 0 && <span className="count">{watchlist.length}</span>}
+          </NavLink>
         </nav>
       </div>
     </header>
