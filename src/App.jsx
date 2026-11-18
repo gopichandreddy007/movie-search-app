@@ -3,6 +3,7 @@ import Navbar from './components/Navbar'
 import Home from './pages/Home'
 import ShowDetails from './pages/ShowDetails'
 import Watchlist from './pages/Watchlist'
+import NotFound from './pages/NotFound'
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/show/:id" element={<ShowDetails />} />
           <Route path="/watchlist" element={<Watchlist />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
     </>

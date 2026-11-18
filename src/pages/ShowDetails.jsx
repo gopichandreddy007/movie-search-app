@@ -5,6 +5,7 @@ import { Loader, ErrorMessage } from '../components/Status'
 import CastList from '../components/CastList'
 import EpisodeList from '../components/EpisodeList'
 import { useWatchlist } from '../context/WatchlistContext'
+import NotFound from './NotFound'
 
 function ShowDetails() {
   const { id } = useParams()
@@ -13,6 +14,8 @@ function ShowDetails() {
   const { isSaved, toggleShow } = useWatchlist()
 
   if (loading) return <Loader />
+  // the api answers 404 when the show id doesn't exist
+  if (error && error.includes('404')) return <NotFound message="We couldn't find that show." />
   if (error) return <ErrorMessage message={error} />
 
   const years = show.premiered
