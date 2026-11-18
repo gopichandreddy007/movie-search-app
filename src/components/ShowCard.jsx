@@ -1,6 +1,8 @@
 import { Link } from 'react-router'
+import { useWatchlist } from '../context/WatchlistContext'
 
 function ShowCard({ show }) {
+  const { isSaved } = useWatchlist()
   const year = show.premiered ? show.premiered.slice(0, 4) : 'N/A'
 
   return (
@@ -12,6 +14,11 @@ function ShowCard({ show }) {
           <div className="no-poster">No image</div>
         )}
         {show.rating?.average && <span className="rating">⭐ {show.rating.average}</span>}
+        {isSaved(show.id) && (
+          <span className="saved-badge" title="In your watchlist">
+            ❤️
+          </span>
+        )}
       </div>
       <div className="show-card-info">
         <h3>{show.name}</h3>

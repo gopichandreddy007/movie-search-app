@@ -4,11 +4,13 @@ import useFetch from '../hooks/useFetch'
 import { Loader, ErrorMessage } from '../components/Status'
 import CastList from '../components/CastList'
 import EpisodeList from '../components/EpisodeList'
+import { useWatchlist } from '../context/WatchlistContext'
 
 function ShowDetails() {
   const { id } = useParams()
   const navigate = useNavigate()
   const { data: show, loading, error } = useFetch(() => getShowDetails(id), [id])
+  const { isSaved, toggleShow } = useWatchlist()
 
   if (loading) return <Loader />
   if (error) return <ErrorMessage message={error} />
@@ -50,6 +52,13 @@ function ShowDetails() {
               </span>
             ))}
           </div>
+
+          <button
+            className={isSaved(show.id) ? 'watch-btn saved' : 'watch-btn'}
+            onClick={() => toggleShow(show)}
+          >
+            {isSaved(show.id) ? '✓ In your watchlist' : '+ Add to watchlist'}
+          </button>
 
           <p className="summary">{stripHtml(show.summary) || 'No summary available.'}</p>
 
