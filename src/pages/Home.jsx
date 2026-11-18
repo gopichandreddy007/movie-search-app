@@ -22,7 +22,8 @@ function Home() {
   return (
     <div>
       <h1>Find your next show</h1>
-      <SearchBar initialValue={query} onSearch={handleSearch} />
+      {/* key={query} resets the input when the url changes (back button, clicking Home) */}
+      <SearchBar key={query} initialValue={query} onSearch={handleSearch} />
 
       <h2 className="section-title">{query ? `Results for "${query}"` : '⭐ Top rated shows'}</h2>
 
