@@ -355,3 +355,45 @@ h1 {
 .link {
   color: var(--accent);
 }
+
+.details-section {
+  margin-top: 40px;
+}
+
+/* ---------- cast ---------- */
+.cast {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 18px;
+}
+
+.cast-item {
+  text-align: center;
+}
+
+.cast-item img,
+.cast-placeholder {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 8px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--surface-2);
+}
+
+.cast-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+}
+
+.cast-name {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.cast-role {
+  font-size: 13px;
+  color: var(--muted);
+}

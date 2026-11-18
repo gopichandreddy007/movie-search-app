@@ -2,6 +2,7 @@ import { useParams, useNavigate } from 'react-router'
 import { getShowDetails, stripHtml } from '../api/tvmaze'
 import useFetch from '../hooks/useFetch'
 import { Loader, ErrorMessage } from '../components/Status'
+import CastList from '../components/CastList'
 
 function ShowDetails() {
   const { id } = useParams()
@@ -83,6 +84,11 @@ function ShowDetails() {
           </table>
         </div>
       </div>
+
+      <section className="details-section">
+        <h2 className="section-title">Cast</h2>
+        <CastList cast={show._embedded?.cast} />
+      </section>
     </div>
   )
 }
