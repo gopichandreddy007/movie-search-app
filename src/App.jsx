@@ -1,14 +1,19 @@
+import { Routes, Route } from 'react-router'
+import Navbar from './components/Navbar'
+import Home from './pages/Home'
+import ShowDetails from './pages/ShowDetails'
+import Watchlist from './pages/Watchlist'
+
 function App() {
   return (
     <>
-      <header className="navbar">
-        <div className="container nav-inner">
-          <span className="logo">🎬 ShowFinder</span>
-        </div>
-      </header>
-
+      <Navbar />
       <main className="container">
-        <h1>Find your next show</h1>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/show/:id" element={<ShowDetails />} />
+          <Route path="/watchlist" element={<Watchlist />} />
+        </Routes>
       </main>
     </>
   )
